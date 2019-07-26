@@ -1,10 +1,9 @@
 import React from 'react';
+import Main from './pages/Main';
 
 function App() {
   return (
-    <div>
-      <h1>Projeto final</h1>
-    </div>
+    <Main />
   );
 }
 
