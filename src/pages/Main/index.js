@@ -15,10 +15,10 @@ class Main extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  buscarUsuario = () => {
+  buscarUsuario = async () => {
     const { user } = this.state;
 
-    Service.user(user);
+    const response = await Service.user(user);
   }
 
   render() {

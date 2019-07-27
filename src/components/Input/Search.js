@@ -1,9 +1,9 @@
 ﻿import React from "react";
 
-const Search = ({ handleChage, value, name, onClick }) => (
+const Search = ({ handleChange, value, name, onClick }) => (
   <div>
-    <input type="search" name={name} onChange={(event) => handleChage(event)} value={value} placeholder="Procurar" />
-    <button onClick={() => onClick()}></button>
+    <input type="search" name={name} onChange={(event) => handleChange(event)} value={value} placeholder="Procurar" />
+    <button onClick={() => onClick()}>SEARCH</button>
   </div>
 );
 

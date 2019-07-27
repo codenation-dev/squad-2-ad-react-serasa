@@ -1,8 +1,9 @@
-﻿
+﻿import axios from 'axios';
+
 const Service = {
-  user(user) {
-    fetch(`https://api.github.com/users/${user}`)
-      .then(response => response.data);
+  async user(user) {
+    const response = await axios.get(`https://api.github.com/users/${user}`);
+    return response.data;
   }
 }
 
