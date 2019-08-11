@@ -1,9 +1,6 @@
 ﻿import React, { Component, Fragment } from 'react';
-
 import Input from '../../components/Input';
 import Service from '../../services';
-import { Route } from 'react-router-dom'
-
 import Profile from '../Profile/Profile'
 import Repositories from '../../components/Repositories/Repositories'
 
@@ -11,8 +8,8 @@ class Main extends Component {
   constructor() {
     super();
     this.state = {
-      userName: '',
-      userData: false,
+      username: '',
+      data: false,
       repositories: false
     }
   }
@@ -22,27 +19,22 @@ class Main extends Component {
   }
 
   buscarUsuario = async () => {
-    const { userName } = this.state;
+    const { username } = this.state;
 
-    const response = await Service.user(userName);
-    this.setState({userData: response});
-  }
-
-  repositoriesHandler = async () => {
-    const { userName } = this.state;
-
-    const response = await Service.repositories(userName);
-    this.setState({repositories: response});
+    const data = await Service.user(username);
+    const repositories = await Service.repositories(username);
+    
+    this.setState({data, repositories});
   }
 
   render() {
-    const { userName } = this.state;
+    const { username, data, repositories } = this.state;
 
     return (
       <Fragment>
-        <Input tipo="search" value={userName} handleChange={this.handleChange} name="userName" onClick={this.buscarUsuario} />
-        { this.state.userData ? <Profile data={this.state.userData} /> : null }
-        <Route path="/repositories/:user" render={() => <Repositories repositories={this.state.repositories} />} />
+        <Input tipo="search" value={username} handleChange={this.handleChange} name="username" onClick={this.buscarUsuario} />
+        { data ? <Profile data={data} /> : null }
+        { repositories ? <Repositories repos={repositories} /> : null }
       </Fragment>
     )
   }
